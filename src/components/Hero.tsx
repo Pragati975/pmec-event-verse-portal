@@ -1,4 +1,5 @@
 
+
 import { ArrowDown } from "lucide-react";
 export const Hero = () => {
   const scrollToClubs = () => {
@@ -18,13 +19,6 @@ export const Hero = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/70 via-indigo-600/70 to-purple-700/70"></div>
-      </div>
-
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-32 right-20 w-24 h-24 bg-white/5 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/20 rounded-full animate-ping"></div>
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -57,3 +51,4 @@ export const Hero = () => {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
     </section>;
 };
+
