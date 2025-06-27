@@ -1,3 +1,4 @@
+
 import { ArrowDown } from "lucide-react";
 export const Hero = () => {
   const scrollToClubs = () => {
@@ -9,8 +10,18 @@ export const Hero = () => {
     }
   };
   return <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <img 
+          src="/lovable-uploads/41aef742-c055-437a-a734-9bab348a8d26.png" 
+          alt="PMEC College Building" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/70 via-indigo-600/70 to-purple-700/70"></div>
+      </div>
+
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 bg-zinc-500">
+      <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
         <div className="absolute bottom-32 right-20 w-24 h-24 bg-white/5 rounded-full animate-bounce"></div>
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/20 rounded-full animate-ping"></div>
