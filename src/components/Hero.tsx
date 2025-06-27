@@ -1,6 +1,4 @@
-
 import { ArrowDown } from "lucide-react";
-
 export const Hero = () => {
   const scrollToClubs = () => {
     const element = document.getElementById("clubs");
@@ -10,7 +8,6 @@ export const Hero = () => {
       });
     }
   };
-
   const scrollToEvents = () => {
     const element = document.getElementById("events");
     if (element) {
@@ -19,17 +16,11 @@ export const Hero = () => {
       });
     }
   };
-
-  return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img 
-          src="/lovable-uploads/41aef742-c055-437a-a734-9bab348a8d26.png" 
-          alt="PMEC College Building" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/70 via-indigo-600/70 to-purple-700/70"></div>
+        <img src="/lovable-uploads/41aef742-c055-437a-a734-9bab348a8d26.png" alt="PMEC College Building" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/70 via-indigo-600/70 to-purple-700/70 rounded-3xl"></div>
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -60,6 +51,5 @@ export const Hero = () => {
 
       {/* Gradient Overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-    </section>
-  );
+    </section>;
 };
