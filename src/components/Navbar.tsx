@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -29,8 +28,12 @@ export const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
-              P
+            <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+              <img 
+                src="/lovable-uploads/c6ad273d-c889-4afe-9d55-c5bafc990ce0.png" 
+                alt="PMEC Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden md:block">
               <h1 className="text-lg font-bold text-gray-900">Parala Maharaja Engineering College</h1>
