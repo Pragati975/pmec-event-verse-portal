@@ -1,5 +1,7 @@
 
+import { useState } from "react";
 import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { EventRegistrationModal } from "./EventRegistrationModal";
 
 const upcomingEvents = [
   {
@@ -32,6 +34,26 @@ const upcomingEvents = [
 ];
 
 export const EventsSection = () => {
+  const [selectedEvent, setSelectedEvent] = useState<string>("");
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+
+  const openRegistrationModal = (eventTitle: string) => {
+    setSelectedEvent(eventTitle);
+    setIsRegistrationModalOpen(true);
+  };
+
+  const closeRegistrationModal = () => {
+    setIsRegistrationModalOpen(false);
+    setSelectedEvent("");
+  };
+
+  const scrollToEvents = () => {
+    const element = document.getElementById("events");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="events" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -77,7 +99,10 @@ export const EventsSection = () => {
                 </div>
               </div>
               
-              <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl">
+              <button 
+                onClick={() => openRegistrationModal(event.title)}
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
+              >
                 Register Now
               </button>
             </div>
@@ -85,11 +110,20 @@ export const EventsSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-200 transition-colors duration-300 font-semibold">
+          <button 
+            onClick={scrollToEvents}
+            className="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-200 transition-colors duration-300 font-semibold"
+          >
             View All Events
           </button>
         </div>
       </div>
+
+      <EventRegistrationModal 
+        isOpen={isRegistrationModalOpen}
+        onClose={closeRegistrationModal}
+        eventTitle={selectedEvent}
+      />
     </section>
   );
 };

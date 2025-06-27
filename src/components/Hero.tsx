@@ -1,6 +1,6 @@
 
-
 import { ArrowDown } from "lucide-react";
+
 export const Hero = () => {
   const scrollToClubs = () => {
     const element = document.getElementById("clubs");
@@ -10,7 +10,18 @@ export const Hero = () => {
       });
     }
   };
-  return <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
+
+  const scrollToEvents = () => {
+    const element = document.getElementById("events");
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+  };
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
@@ -37,7 +48,7 @@ export const Hero = () => {
           <button onClick={scrollToClubs} className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
             Explore Clubs
           </button>
-          <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
+          <button onClick={scrollToEvents} className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300">
             View Events
           </button>
         </div>
@@ -49,6 +60,6 @@ export const Hero = () => {
 
       {/* Gradient Overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-    </section>;
+    </section>
+  );
 };
-

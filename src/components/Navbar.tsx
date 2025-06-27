@@ -1,9 +1,12 @@
+
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { AdminLoginModal } from "./AdminLoginModal";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +22,15 @@ export const Navbar = () => {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const openAdminModal = () => {
+    setIsAdminModalOpen(true);
+    setIsMobileMenuOpen(false);
+  };
+
+  const closeAdminModal = () => {
+    setIsAdminModalOpen(false);
   };
 
   return (
@@ -55,7 +67,10 @@ export const Navbar = () => {
             <button onClick={() => scrollToSection("contact")} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Contact
             </button>
-            <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+            <button 
+              onClick={openAdminModal}
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
               Admin Login
             </button>
           </nav>
@@ -85,13 +100,21 @@ export const Navbar = () => {
               Contact
             </button>
             <div className="px-4">
-              <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300">
+              <button 
+                onClick={openAdminModal}
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+              >
                 Admin Login
               </button>
             </div>
           </div>
         )}
       </div>
+
+      <AdminLoginModal 
+        isOpen={isAdminModalOpen}
+        onClose={closeAdminModal}
+      />
     </header>
   );
 };
