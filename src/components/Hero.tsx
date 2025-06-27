@@ -10,7 +10,7 @@ export const Hero = () => {
   };
   return <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-zinc-500">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
         <div className="absolute bottom-32 right-20 w-24 h-24 bg-white/5 rounded-full animate-bounce"></div>
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/20 rounded-full animate-ping"></div>
