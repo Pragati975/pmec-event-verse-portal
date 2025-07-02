@@ -1,4 +1,3 @@
-
 import { ArrowDown } from "lucide-react";
 export const Hero = () => {
   const scrollToClubs = () => {
@@ -25,14 +24,14 @@ export const Hero = () => {
       </div>
 
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="mb-8">
+        <div className="mb-8 bg-zinc-50">
           <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent animate-fade-in drop-shadow-lg">
             Welcome to PMEC
           </h2>
           <h3 className="text-3xl md:text-4xl font-semibold mb-8 text-gray-800 drop-shadow-md">Event Management Portal</h3>
         </div>
         
-        <p className="text-xl md:text-2xl mb-12 text-gray-700 max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
+        <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-sm font-medium text-center text-pink-950">
           Empowering Innovation, Celebrating Culture. Explore events, connect with clubs, and celebrate the vibrant life at PMEC.
         </p>
 
