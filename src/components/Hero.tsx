@@ -1,4 +1,6 @@
+
 import { ArrowDown } from "lucide-react";
+
 export const Hero = () => {
   const scrollToClubs = () => {
     const element = document.getElementById("clubs");
@@ -8,6 +10,7 @@ export const Hero = () => {
       });
     }
   };
+
   const scrollToEvents = () => {
     const element = document.getElementById("events");
     if (element) {
@@ -16,40 +19,64 @@ export const Hero = () => {
       });
     }
   };
-  return <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 text-white overflow-hidden">
-      {/* Background Image with Overlay */}
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Full-screen Background Image */}
       <div className="absolute inset-0">
-        <img src="/lovable-uploads/41aef742-c055-437a-a734-9bab348a8d26.png" alt="PMEC College Building" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/40 rounded-3xl"></div>
+        <img 
+          src="/lovable-uploads/41aef742-c055-437a-a734-9bab348a8d26.png" 
+          alt="PMEC College Building" 
+          className="w-full h-full object-cover object-center" 
+        />
+        {/* Soft transparent dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div className="mb-8 bg-zinc-50">
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent animate-fade-in drop-shadow-lg">
+      {/* Hero Content */}
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <div className="animate-fade-in">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 text-white drop-shadow-2xl leading-tight" 
+              style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Welcome to PMEC
+          </h1>
+          
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-white/95 drop-shadow-lg"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            Event Management Portal
           </h2>
-          <h3 className="text-3xl md:text-4xl font-semibold mb-8 text-gray-800 drop-shadow-md">Event Management Portal</h3>
         </div>
         
-        <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-sm font-medium text-center text-pink-950">
+        <p className="text-lg md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-white/90 drop-shadow-md font-medium animate-fade-in-delay"
+           style={{ fontFamily: 'Montserrat, sans-serif', animationDelay: '0.3s' }}>
           Empowering Innovation, Celebrating Culture. Explore events, connect with clubs, and celebrate the vibrant life at PMEC.
         </p>
 
-        <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
-          <button onClick={scrollToClubs} className="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-delay"
+             style={{ animationDelay: '0.6s' }}>
+          <button 
+            onClick={scrollToClubs} 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1 min-w-[200px]"
+            style={{ fontFamily: 'Montserrat, sans-serif' }}
+          >
             Explore Clubs
           </button>
-          <button onClick={scrollToEvents} className="border-2 border-gray-700 text-gray-700 px-8 py-4 rounded-full font-semibold hover:bg-gray-700 hover:text-white transition-all duration-300">
+          <button 
+            onClick={scrollToEvents} 
+            className="border-2 border-white/80 hover:border-white text-white hover:bg-white hover:text-gray-900 px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm bg-white/10 min-w-[200px] transform hover:scale-105 hover:-translate-y-1"
+            style={{ fontFamily: 'Montserrat, sans-serif' }}
+          >
             View Events
           </button>
         </div>
 
         <div className="animate-bounce">
-          <ArrowDown size={32} className="mx-auto text-gray-600" />
+          <ArrowDown size={36} className="mx-auto text-white/70 drop-shadow-lg" />
         </div>
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
-    </section>;
+      {/* Bottom gradient for smooth transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/20 to-transparent"></div>
+    </section>
+  );
 };
