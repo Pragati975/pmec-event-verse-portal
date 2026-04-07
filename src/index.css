@@ -129,3 +129,7 @@
   animation: fadeInDelay 1s ease-out;
   animation-fill-mode: both;
 }
+
+#lovable-badge {
+  display: none !important;
+}
