@@ -20,11 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'montserrat': ['Montserrat', 'sans-serif'],
-				'sans': ['Montserrat', 'system-ui', 'sans-serif'],
-			},
-			boxShadow: {
-				'3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
+				'display': ['Space Grotesk', 'sans-serif'],
+				'sans': ['Space Grotesk', 'Montserrat', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -69,6 +66,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				violet: {
+					DEFAULT: 'hsl(263, 70%, 55%)',
+					glow: 'hsl(263, 70%, 65%)',
+				},
+				cyan: {
+					DEFAULT: 'hsl(187, 94%, 43%)',
+					glow: 'hsl(187, 94%, 53%)',
+				},
+				navy: {
+					DEFAULT: 'hsl(230, 60%, 7%)',
+					light: 'hsl(230, 50%, 12%)',
 				}
 			},
 			borderRadius: {
@@ -78,20 +87,12 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				}
 			},
 			animation: {

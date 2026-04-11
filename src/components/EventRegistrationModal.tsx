@@ -1,8 +1,11 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import confetti from "canvas-confetti";
+import { useNavigate } from "react-router-dom";
 
 interface EventRegistrationModalProps {
   isOpen: boolean;
@@ -11,116 +14,69 @@ interface EventRegistrationModalProps {
 }
 
 export const EventRegistrationModal = ({ isOpen, onClose, eventTitle }: EventRegistrationModalProps) => {
+  const [user, setUser] = useState<any>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    registrationNumber: "",
-    phone: "",
-    year: "",
-    branch: ""
+    name: "", email: "", registrationNumber: "", phone: "", year: "", branch: ""
   });
-  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        setFormData(prev => ({ ...prev, email: session.user.email || "" }));
+      }
+    });
+  }, [isOpen]);
+
+  if (!user && isOpen) {
+    toast.error("Please login to register for events");
+    onClose();
+    navigate("/login");
+    return null;
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Registration Successful!",
-      description: `You have been registered for ${eventTitle}. Confirmation details will be sent to your email.`,
-    });
-    setFormData({
-      name: "",
-      email: "",
-      registrationNumber: "",
-      phone: "",
-      year: "",
-      branch: ""
-    });
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    toast.success(`Successfully registered for ${eventTitle}!`);
+    setFormData({ name: "", email: "", registrationNumber: "", phone: "", year: "", branch: "" });
     onClose();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const inputClass = "w-full px-4 py-3 bg-muted/50 border border-border rounded-xl text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all";
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto bg-card border-border">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Register for {eventTitle}</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-foreground">Register for {eventTitle}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-              Full Name *
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-              required
-            />
+            <label className="block text-sm font-semibold text-foreground/80 mb-2">Full Name *</label>
+            <input type="text" name="name" value={formData.name} onChange={handleInputChange} className={inputClass} required />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-              Email Address *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-              required
-            />
+            <label className="block text-sm font-semibold text-foreground/80 mb-2">Email *</label>
+            <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={inputClass} required />
           </div>
           <div>
-            <label htmlFor="registrationNumber" className="block text-sm font-semibold text-gray-700 mb-2">
-              Registration Number *
-            </label>
-            <input
-              type="text"
-              id="registrationNumber"
-              name="registrationNumber"
-              value={formData.registrationNumber}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-              required
-            />
+            <label className="block text-sm font-semibold text-foreground/80 mb-2">Registration Number *</label>
+            <input type="text" name="registrationNumber" value={formData.registrationNumber} onChange={handleInputChange} className={inputClass} required />
           </div>
           <div>
-            <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-              Phone Number *
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-              required
-            />
+            <label className="block text-sm font-semibold text-foreground/80 mb-2">Phone *</label>
+            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={inputClass} required />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="year" className="block text-sm font-semibold text-gray-700 mb-2">
-                Year *
-              </label>
-              <select
-                id="year"
-                name="year"
-                value={formData.year}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                required
-              >
+              <label className="block text-sm font-semibold text-foreground/80 mb-2">Year *</label>
+              <select name="year" value={formData.year} onChange={handleInputChange} className={inputClass} required>
                 <option value="">Select Year</option>
                 <option value="1st">1st Year</option>
                 <option value="2nd">2nd Year</option>
@@ -129,17 +85,8 @@ export const EventRegistrationModal = ({ isOpen, onClose, eventTitle }: EventReg
               </select>
             </div>
             <div>
-              <label htmlFor="branch" className="block text-sm font-semibold text-gray-700 mb-2">
-                Branch *
-              </label>
-              <select
-                id="branch"
-                name="branch"
-                value={formData.branch}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                required
-              >
+              <label className="block text-sm font-semibold text-foreground/80 mb-2">Branch *</label>
+              <select name="branch" value={formData.branch} onChange={handleInputChange} className={inputClass} required>
                 <option value="">Select Branch</option>
                 <option value="CSE">Computer Science</option>
                 <option value="ECE">Electronics & Communication</option>
@@ -150,10 +97,7 @@ export const EventRegistrationModal = ({ isOpen, onClose, eventTitle }: EventReg
               </select>
             </div>
           </div>
-          <Button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-          >
+          <Button type="submit" className="w-full bg-gradient-to-r from-primary to-secondary hover:scale-[1.02] transition-all text-primary-foreground">
             Register Now
           </Button>
         </form>
