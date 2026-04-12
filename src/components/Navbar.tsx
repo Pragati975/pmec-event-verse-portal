@@ -83,6 +83,7 @@ export const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-3">
+            <ThemeSwitcher />
             {user ? (
               <>
                 <Link
@@ -142,6 +143,10 @@ export const Navbar = () => {
                   {link.label}
                 </button>
               ))}
+              <div className="flex items-center justify-between pt-2 pb-4 border-b border-border/30">
+                <span className="text-sm text-muted-foreground">Theme</span>
+                <ThemeSwitcher />
+              </div>
               <div className="pt-4 space-y-3">
                 {user ? (
                   <>
