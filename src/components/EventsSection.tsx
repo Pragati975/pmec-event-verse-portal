@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Calendar, Clock, MapPin, Users, Timer } from "lucide-react";
 import { motion } from "framer-motion";
 import { EventRegistrationModal } from "./EventRegistrationModal";
+import sportsMeetImg from "@/assets/sports-meet.jpg";
+import danceCompImg from "@/assets/dance-competition.jpg";
 
 const upcomingEvents = [
   {
@@ -47,7 +49,7 @@ const upcomingEvents = [
     seats: 200,
     description: "Annual inter-departmental sports competition with multiple disciplines.",
     category: "Sports",
-    image: "https://images.unsplash.com/photo-1461896836934-bd45ba6343c5?w=600&h=400&fit=crop"
+    image: sportsMeetImg
   },
   {
     title: "AI Workshop",
@@ -69,7 +71,7 @@ const upcomingEvents = [
     seats: 100,
     description: "Inter-college dance competition with solo and group categories.",
     category: "Cultural",
-    image: "https://images.unsplash.com/photo-1547153760-18fc86c6e983?w=600&h=400&fit=crop"
+    image: danceCompImg
   }
 ];
 
