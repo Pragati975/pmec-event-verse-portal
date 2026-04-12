@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Sparkles, Rocket } from "lucide-react";
 import { ParticleBackground } from "./ParticleBackground";
 import { Link } from "react-router-dom";
+import pmecHeroBg from "@/assets/pmec-hero-bg.jpg";
 
 export const Hero = () => {
   const scrollToEvents = () => {
@@ -11,6 +12,14 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* PMEC College Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${pmecHeroBg})` }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-background/60" />
+
       <ParticleBackground />
 
       {/* Radial gradient overlays */}
