@@ -4,6 +4,7 @@ import { Menu, X, LogIn, UserPlus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
